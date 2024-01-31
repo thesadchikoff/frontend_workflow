@@ -1,0 +1,33 @@
+.right_section {
+	@apply flex items-center gap-5;
+	.logout_icon {
+		@apply p-2 border rounded-full border-slate-800 cursor-pointer;
+		transition: all 0.3s;
+		svg {
+			@apply stroke-slate-500;
+			transition: all 0.3s;
+		}
+		&:hover {
+			@apply bg-slate-800;
+		}
+		&:hover svg {
+			@apply stroke-white;
+		}
+	}
+}
+.user_banner {
+	@apply py-1 px-5 border mobile:hidden desktop:flex notebook:flex tablet:flex border-slate-800 flex-col justify-center rounded;
+	.balance_info {
+		@apply text-[10px] text-slate-600 flex items-center gap-2;
+		background: linear-gradient(
+			263deg,
+			#4e29d7 0.76%,
+			#a42161 45.59%,
+			#c87f37 101.51%
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-weight: 600;
+	}
+}
