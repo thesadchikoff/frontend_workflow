@@ -1,0 +1,46 @@
+.sidebar {
+	@apply w-[200px] h-full bg-[#0F1623] border-t border-[#0007146b]  notebook:flex flex-col p-5 mobile:hidden;
+	.navigation {
+		@apply w-full flex flex-col gap-3;
+		flex: 1 0;
+		.link_item {
+			@apply px-5 py-2 rounded flex items-center gap-2 cursor-pointer hover:bg-slate-500 hover:bg-opacity-20 delay-100 transition-all;
+			span {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+	}
+	.sidebar_footer {
+		flex: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.right_section {
+			@apply flex items-center gap-5;
+		}
+		.user_banner {
+			@apply py-1 px-5 flex flex-col justify-center rounded;
+			background: linear-gradient(268deg, #17063d 0%, #000714 100%);
+			.balance_info {
+				@apply text-[10px] text-slate-600 flex items-center gap-2;
+				background: linear-gradient(
+					263deg,
+					#4e29d7 0.76%,
+					#a42161 45.59%,
+					#c87f37 101.51%
+				);
+				background-clip: text;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+.active {
+	@apply bg-slate-500 bg-opacity-20;
+}

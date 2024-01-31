@@ -1,7 +1,4 @@
-import { Plus } from 'lucide-react'
 import Coin from '../../assets/coin.svg'
-import TaskItem from '../../components/task-item'
-import { IconSpace } from '../../components/ui/icon-space'
 import { formatNumber } from '../../helpers/format-balance.helper'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import styles from './Profile.module.scss'
@@ -12,7 +9,7 @@ const Profile = () => {
 		<div className='w-full h-full flex flex-col gap-10'>
 			<div>
 				<h1 className='mb-5 text-3xl font-bold'>Ваш профиль</h1>
-				<div className='p-5 border border-slate-700 rounded flex items-center justify-between'>
+				<div className='p-5 bg-[#0F1623] rounded flex items-center justify-between'>
 					<h1 className='text-2xl font-bold'>{user?.username}</h1>
 					<div className={styles.balance_info}>
 						<span className={styles.balance_count}>
@@ -22,7 +19,7 @@ const Profile = () => {
 					</div>
 				</div>
 			</div>
-			<div>
+			{/* <div>
 				<div
 					className='flex items-center justify-between mb-5'
 					title='Create task'
@@ -37,7 +34,7 @@ const Profile = () => {
 						return <TaskItem task={task} key={task.id} />
 					})}
 				</div>
-			</div>
+			</div> */}
 		</div>
 	)
 }

@@ -1,0 +1,16 @@
+.task-item {
+	@apply p-5 bg-[#0F1623] rounded flex   flex-col relative;
+	transition: all 0.3s;
+	&:hover {
+		transform: translateY(-10px);
+	}
+	.task-header {
+		@apply w-full flex items-center justify-between flex-grow-0 pb-4 border-b border-b-slate-800;
+	}
+	.task-body {
+		@apply py-4 flex-1 border-b border-b-slate-800;
+	}
+	.task-footer {
+		@apply pt-4 flex-grow-0 flex items-center justify-between;
+	}
+}

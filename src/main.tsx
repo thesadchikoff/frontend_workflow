@@ -6,9 +6,7 @@ import './index.css'
 import { store } from './store'
 const queryClient = new QueryClient({
 	defaultOptions: {
-		queries: {
-			staleTime: Infinity,
-		},
+		queries: {},
 	},
 })
 ReactDOM.createRoot(document.getElementById('root')!).render(

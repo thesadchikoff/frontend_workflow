@@ -1,6 +1,5 @@
 import { Ban, KeyRound, Mail } from 'lucide-react'
 import { FC } from 'react'
-
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import Button from '../../components/button/index.tsx'
@@ -33,7 +32,7 @@ const RegisterPage: FC = () => {
 				</h1>
 				<div className={styles.form_container}>
 					<Input
-						placeholder={'Введите email'}
+						placeholder={'Придумайте логин'}
 						{...register('username', {
 							required: 'Обязательно к заполнению',
 							// pattern: {
@@ -62,7 +61,7 @@ const RegisterPage: FC = () => {
 					/>
 
 					<Button title='Регистрация' disable={!isDirty || !isValid} />
-					<span className='text-xs text-slate-700'>
+					<span className='mobile:text-[10px] tablet:text-xs notebook:text-xs desktop:text-xs text-[#616979] flex items-center gap-1'>
 						У Вас уже есть аккаунт?{' '}
 						<Link to='/login' className='text-[#FFB46A] underline'>
 							Авторизуйтесь!
@@ -72,11 +71,11 @@ const RegisterPage: FC = () => {
 						{error && (
 							<span
 								className={
-									'text-xs text-red-600 flex items-center gap-2 p-2 w-full justify-center border border-red-600'
+									'text-xs text-red-600 bg-red-600 bg-opacity-5 rounded flex items-center gap-2 p-2 w-full justify-center border border-red-600'
 								}
 							>
 								<Ban size={12} />
-								{error?.response.data}
+								{error.response ? error?.response.data : 'Сервер не отвечает'}
 							</span>
 						)}
 					</>

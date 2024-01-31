@@ -1,28 +1,28 @@
 .icon {
-  @apply p-2 border rounded-full border-slate-800 cursor-pointer;
-  transition: all 0.3s;
-  svg {
-    @apply stroke-slate-500;
-    transition: all 0.3s;
-  }
-  &:hover {
-    @apply bg-slate-800;
-  }
-  &:hover svg {
-    @apply stroke-white;
-  }
+	@apply p-2 border rounded-full border-slate-800 cursor-pointer w-max;
+	transition: all 0.3s;
+	svg {
+		@apply stroke-slate-500;
+		transition: all 0.3s;
+	}
+	&:hover {
+		@apply bg-slate-800;
+	}
+	&:hover svg {
+		@apply stroke-white;
+	}
 }
 .icon_is_mobile {
-  @apply p-2 mobile:block desktop:hidden notebook:hidden tablet:hidden border rounded-full border-slate-800 cursor-pointer;
-  transition: all 0.3s;
-  svg {
-    @apply stroke-slate-500;
-    transition: all 0.3s;
-  }
-  &:hover {
-    @apply bg-slate-800;
-  }
-  &:hover svg {
-    @apply stroke-white;
-  }
+	@apply p-2 mobile:block desktop:hidden notebook:hidden tablet:hidden border rounded-full border-slate-800 cursor-pointer;
+	transition: all 0.3s;
+	svg {
+		@apply stroke-slate-500;
+		transition: all 0.3s;
+	}
+	&:hover {
+		@apply bg-slate-800;
+	}
+	&:hover svg {
+		@apply stroke-white;
+	}
 }

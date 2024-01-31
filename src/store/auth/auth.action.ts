@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { toaster } from 'evergreen-ui'
 import authService from '../../services/auth/auth.service.ts'
 import userService from '../../services/user/user.service.ts'
 import { LoginData, RegisterData } from './../../types/auth.types'
@@ -9,8 +10,10 @@ export const login = createAsyncThunk(
 		try {
 			const data = await authService.login(userData)
 			console.log('from login action', data)
+			toaster.success(`С возвращением, ${data.user.username}!`)
 			return data.user
 		} catch (error) {
+			toaster.danger('Server error')
 			console.log("It's error -> ", error)
 			return thunkAPI.rejectWithValue(error)
 		}
@@ -23,9 +26,11 @@ export const registerHandler = createAsyncThunk(
 		try {
 			const data = await authService.register(userData)
 			console.log('from register action', data)
+			toaster.success(`Добро пожаловать, ${data.user.username}!`)
 			return data.user
 		} catch (error) {
 			console.log("It's error -> ", error)
+			toaster.danger('Server error')
 			return thunkAPI.rejectWithValue(error)
 		}
 	}

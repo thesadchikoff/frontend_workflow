@@ -1,12 +1,12 @@
 .button {
-  @apply w-full flex items-center px-5 justify-center py-2 bg-slate-900 text-[#FFB46A];
-  .btn-icon {
-    svg {
-      width: 12px;
-      height: 12px;
-    }
-  }
-  &:disabled {
-    @apply opacity-40 cursor-not-allowed;
-  }
+	@apply w-full flex items-center px-5 justify-center py-2 bg-[#000714] text-[#FFB46A] rounded;
+	.btn-icon {
+		svg {
+			width: 12px;
+			height: 12px;
+		}
+	}
+	&:disabled {
+		@apply opacity-60 cursor-not-allowed;
+	}
 }

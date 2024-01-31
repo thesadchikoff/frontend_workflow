@@ -13,9 +13,10 @@ class AuthService {
 			'login',
 			userData
 		)
-		if (data?.token) {
-			Cookies.set('accessToken', data.token)
-		}
+		Cookies.set('accessToken', data.token)
+		console.log(data.token === userService.getUserToken())
+		console.log(data.token)
+		console.log(userService.getUserToken())
 		userService.saveUser(data.user)
 		return data
 	}

@@ -1,24 +1,22 @@
 import { forwardRef } from 'react'
 import { FieldError } from 'react-hook-form'
-import './Input.scss'
+import './Textarea.scss'
 
 interface IField {
 	icon?: JSX.Element
 	error?: FieldError
 	placeholder?: string
-	type?: string
 }
-const Input = forwardRef<HTMLInputElement, IField>(
-	({ icon, error, placeholder, type = 'text', ...rest }, ref) => {
+const Textarea = forwardRef<HTMLTextAreaElement, IField>(
+	({ icon, error, placeholder, ...rest }, ref) => {
 		console.log(rest, 'rests')
 		return (
 			<div className='w-full flex flex-col gap-1 '>
 				<div className={'field-item'}>
 					{icon && <div>{icon}</div>}
-					<input
+					<textarea
 						ref={ref}
 						{...rest}
-						type={type}
 						placeholder={placeholder}
 						aria-invalid={error ? 'true' : 'false'}
 						className={'input'}
@@ -32,4 +30,4 @@ const Input = forwardRef<HTMLInputElement, IField>(
 	}
 )
 
-export default Input
+export default Textarea
