@@ -19,6 +19,7 @@ const LoginPage: FC = () => {
 	} = useForm<AuthInputs>({ mode: 'all' })
 	const onSubmit: SubmitHandler<AuthInputs> = data => {
 		dispatch(login(data))
+
 		reset()
 	}
 	const isLoading = useAppSelector(state => state.isLoading)

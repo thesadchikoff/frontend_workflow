@@ -5,18 +5,21 @@
 * {
 	font-family: 'Inter', sans-serif;
 }
-
 html {
-	width: 100%;
-	height: 100%;
+	overflow: hidden;
 }
-
-body,
-#root {
+body {
 	background-color: #000714;
 	width: 100%;
-	height: 100%;
+	display: flex;
+	max-height: 100vh;
 	color: aliceblue;
+	overflow: hidden;
+}
+
+#root {
+	display: flex;
+	flex: 1;
 }
 
 input:-webkit-autofill,
@@ -29,10 +32,37 @@ input:-webkit-autofill:active {
 	box-shadow: inset 0 0 20px 20px hwb(0 14% 86% / 0.161);
 }
 
+/*  Danger Alert */
 .ub-bg-clr_FDF4F4 {
 	background-color: rgba(255, 0, 0, 0.065) !important;
 }
 
+.ub-bg-clr_FDF4F4 button:hover {
+	background-color: rgba(214, 35, 35, 0.218) !important;
+}
+
 .ub-bs_17sc08g {
 	box-shadow: none !important;
+}
+
+/* Success Alert */
+.ub-bg-clr_F5FBF8 {
+	background-color: rgba(0, 128, 0, 0.097) !important;
+	border: 1px solid rgb(40, 178, 40) !important;
+}
+
+.ub-bg-clr_F5FBF8 svg > path {
+	fill: rgb(40, 178, 40) !important;
+}
+
+.ub-bg-clr_F5FBF8 button:hover {
+	background-color: rgba(40, 178, 40, 0.218) !important;
+}
+
+.ub-bg-clr_F5FBF8 button:active {
+	border-color: rgba(40, 178, 40, 0.388) !important;
+}
+
+.ub-color_317159 {
+	color: rgb(40, 178, 40) !important;
 }

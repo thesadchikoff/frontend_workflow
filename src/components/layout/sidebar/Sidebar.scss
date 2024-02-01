@@ -1,5 +1,7 @@
 .sidebar {
-	@apply w-[200px] h-full bg-[#0F1623] border-t border-[#0007146b]  notebook:flex flex-col p-5 mobile:hidden;
+	@apply w-[200px] min-h-[calc(100vh-60px)] bg-[#0F1623] border-t border-[#0007146b]  notebook:flex flex-col p-5 mobile:hidden;
+
+	overflow-y: auto;
 	.navigation {
 		@apply w-full flex flex-col gap-3;
 		flex: 1 0;

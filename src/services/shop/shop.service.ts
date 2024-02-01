@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { toaster } from 'evergreen-ui'
 import config from '../../shared/config'
-import { ShopItem } from '../../types/shop.type'
+import { MyShopItem, ShopItem } from '../../types/shop.type'
 import userService from '../user/user.service'
 
 class ShopService {
@@ -28,6 +28,22 @@ class ShopService {
 			return data
 		} catch (error) {
 			toaster.success('Произошла ошибка при покупке')
+			return error
+		}
+	}
+
+	async useProductItem(item: MyShopItem) {
+		try {
+			const { data } = await axios.delete(
+				`${config.baseURL}use-my-item/${item.uniq_id}`,
+				{
+					headers: {
+						Authorization: `Bearer ${userService.getUserToken()}`,
+					},
+				}
+			)
+			return data
+		} catch (error) {
 			return error
 		}
 	}

@@ -1,0 +1,38 @@
+.shop_item {
+	@apply p-5 flex flex-col bg-[#0F1623] rounded h-[280px] gap-6;
+	transition: all 0.3s;
+	&:hover {
+		transform: translateY(-10px);
+	}
+	.shop_header {
+		.shop_title {
+			@apply text-xl;
+		}
+	}
+	.shop_body {
+		@apply flex-1;
+	}
+	.shop_footer {
+		@apply flex items-center w-full;
+		.shop_price {
+			@apply flex-1 flex items-center gap-2;
+			span {
+				@apply text-lg font-bold;
+				font-size: 18px;
+				font-weight: bold;
+				background: linear-gradient(
+					263deg,
+					#4e29d7 0.76%,
+					#a42161 45.59%,
+					#c87f37 101.51%
+				);
+				background-clip: text;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
+		button {
+			@apply w-full;
+		}
+	}
+}

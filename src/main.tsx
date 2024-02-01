@@ -5,11 +5,7 @@ import App from './App.tsx'
 import './index.css'
 import { store } from './store'
 const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			staleTime: Infinity,
-		},
-	},
+	defaultOptions: {},
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

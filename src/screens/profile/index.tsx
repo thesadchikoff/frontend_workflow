@@ -1,46 +1,36 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Coin from '../../assets/coin.svg'
+import MyShopProduct from '../../components/my-shop-item'
 import SectionHeader from '../../components/section-header'
 import { formatNumber } from '../../helpers/format-balance.helper'
 import { getRoleName } from '../../helpers/get-role-name.helper'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import shopService from '../../services/shop/shop.service'
-
-import Button from '../../components/button'
 import { MyShopItem } from '../../types/shop.type'
 import styles from './Profile.module.scss'
+
 const Profile = () => {
 	const user = useAppSelector(state => state.user)
+	const queryClient = useQueryClient()
+	const { mutate } = useMutation({
+		mutationKey: ['use-item'],
+		mutationFn: shopService.useProductItem,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['my-items'] })
+		},
+	})
 	const { roleName, bgColor, borderColor, textColor } = getRoleName(user?.role)
 	const { data, isSuccess } = useQuery<MyShopItem[]>({
 		queryKey: ['my-items'],
 		queryFn: shopService.getMyItems,
-		refetchOnWindowFocus: 'always',
+		refetchOnWindowFocus: true,
+		refetchOnReconnect: true,
 	})
-	const ShopItem = ({ item }: { item: MyShopItem }) => {
-		return (
-			<div className={styles.shop_item}>
-				<div className={styles.shop_header}>
-					<h1 className={styles.shop_title}>{item.title}</h1>
-				</div>
-				<div className={styles.shop_body}>
-					<span className={styles.shop_description}>{item.description}</span>
-				</div>
-				<div className={styles.shop_footer}>
-					<div className={styles.shop_price}>
-						<img src={Coin} />
-						<span>{item.price}</span>
-					</div>
-					<Button title='Использовать' />
-				</div>
-			</div>
-		)
-	}
 
 	return (
 		<>
 			{user && (
-				<div className='w-full h-full flex flex-col gap-10'>
+				<div className='flex flex-col gap-10'>
 					<div className='flex flex-col'>
 						<SectionHeader title='Ваш профиль' />
 						<div className='p-5 bg-[#0F1623] rounded flex items-center justify-between'>
@@ -64,7 +54,9 @@ const Profile = () => {
 							{isSuccess &&
 								data &&
 								data.map(item => {
-									return <ShopItem item={item} />
+									return (
+										<MyShopProduct item={item} action={() => mutate(item)} />
+									)
 								})}
 						</div>
 					</div>

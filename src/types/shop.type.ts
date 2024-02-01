@@ -6,5 +6,5 @@ export type ShopItem = {
 }
 
 export type MyShopItem = {
-	unic_id: number
+	uniq_id: number
 } & ShopItem
