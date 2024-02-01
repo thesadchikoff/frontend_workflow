@@ -12,6 +12,7 @@ const MyShopProduct = ({ item, action }: MyShopProduct) => {
 		<div className={styles.shop_item}>
 			<div className={styles.shop_header}>
 				<h1 className={styles.shop_title}>{item.title}</h1>
+				<h1 className={styles.shop_title}>{item.uniq_id}</h1>
 			</div>
 			<div className={styles.shop_body}>
 				<span className={styles.shop_description}>{item.description}</span>

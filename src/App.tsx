@@ -9,6 +9,7 @@ import LoginPage from './screens/login'
 import ProfilePage from './screens/profile'
 import RegisterPage from './screens/register/index.tsx'
 import ShopPage from './screens/shop/index.tsx'
+import SubdivisionPage from './screens/subdivision/index.tsx'
 import TasksPage from './screens/tasks/index.tsx'
 import userService from './services/user/user.service.ts'
 import { logout, updateProfile } from './store/auth/auth.slice.ts'
@@ -43,6 +44,10 @@ function App() {
 					<Route
 						path={'/shop'}
 						element={<OnlyAuth component={<ShopPage />} />}
+					/>
+					<Route
+						path={'/subdivision'}
+						element={<OnlyAuth component={<SubdivisionPage />} />}
 					/>
 					<Route
 						path={'/login'}

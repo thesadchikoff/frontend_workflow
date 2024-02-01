@@ -9,7 +9,7 @@ const Layout = ({ children }: PropsWithChildren) => {
 			<Header />
 			<main className={'w-full flex-1 flex'}>
 				<Sidebar />
-				<section className='flex-1 px-10 h-[calc(100vh-60px)] py-5 overflow-y-auto'>
+				<section className='flex-1 px-10 h-[calc(100vh-60px)] py-10 overflow-y-auto'>
 					{children}
 				</section>
 			</main>
