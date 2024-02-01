@@ -13,7 +13,10 @@ export const login = createAsyncThunk(
 			toaster.success(`С возвращением, ${data.user.username}!`)
 			return data.user
 		} catch (error) {
-			toaster.danger('Server error')
+			console.log(error)
+			toaster.danger(
+				error?.response ? error?.response?.data?.message : 'Сервер не отвечает'
+			)
 			console.log("It's error -> ", error)
 			return thunkAPI.rejectWithValue(error)
 		}
@@ -30,7 +33,9 @@ export const registerHandler = createAsyncThunk(
 			return data.user
 		} catch (error) {
 			console.log("It's error -> ", error)
-			toaster.danger('Server error')
+			toaster.danger(
+				error?.response ? error?.response?.data?.message : 'Сервер не отвечает'
+			)
 			return thunkAPI.rejectWithValue(error)
 		}
 	}

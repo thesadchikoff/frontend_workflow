@@ -1,4 +1,4 @@
-import { Ban, KeyRound, Loader2, UserRound } from 'lucide-react'
+import { KeyRound, Loader2, UserRound } from 'lucide-react'
 import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -22,7 +22,7 @@ const LoginPage: FC = () => {
 		dispatch(login(data))
 		reset()
 	}
-	const { error, isLoading } = useAppSelector(state => state)
+	const isLoading = useAppSelector(state => state.isLoading)
 	const dispatch = useAppDispatch()
 
 	return (
@@ -53,7 +53,7 @@ const LoginPage: FC = () => {
 					/>
 
 					<Button
-						icon={isLoading && <Loader2 className='animate-spin' />}
+						icon={isLoading ? <Loader2 className='animate-spin' /> : null}
 						title='Войти'
 						disable={!isDirty || !isValid || isLoading}
 					/>
@@ -63,18 +63,6 @@ const LoginPage: FC = () => {
 							Зарегистрируйтесь!
 						</Link>
 					</span>
-					<>
-						{error && (
-							<span
-								className={
-									'text-xs text-red-600 bg-red-600 bg-opacity-5 rounded flex items-center gap-2 p-2 w-full justify-center border border-red-600'
-								}
-							>
-								<Ban size={12} />
-								{error.response ? error?.response.data : 'Сервер не отвечает'}
-							</span>
-						)}
-					</>
 				</div>
 			</form>
 		</div>

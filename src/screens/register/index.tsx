@@ -1,4 +1,4 @@
-import { Ban, KeyRound, Mail } from 'lucide-react'
+import { KeyRound, Loader2, Mail } from 'lucide-react'
 import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -22,7 +22,7 @@ const RegisterPage: FC = () => {
 		dispatch(registerHandler(data))
 		reset()
 	}
-	const error = useAppSelector(state => state.error)
+	const isLoading = useAppSelector(state => state.isLoading)
 
 	return (
 		<div className={styles.wrapper}>
@@ -60,25 +60,17 @@ const RegisterPage: FC = () => {
 						icon={<KeyRound className={'text-slate-900'} />}
 					/>
 
-					<Button title='Регистрация' disable={!isDirty || !isValid} />
+					<Button
+						title='Регистрация'
+						disable={!isDirty || !isValid}
+						icon={isLoading ? <Loader2 className='animate-spin' /> : null}
+					/>
 					<span className='mobile:text-[10px] tablet:text-xs notebook:text-xs desktop:text-xs text-[#616979] flex items-center gap-1'>
 						У Вас уже есть аккаунт?{' '}
 						<Link to='/login' className='text-[#FFB46A] underline'>
 							Авторизуйтесь!
 						</Link>
 					</span>
-					<>
-						{error && (
-							<span
-								className={
-									'text-xs text-red-600 bg-red-600 bg-opacity-5 rounded flex items-center gap-2 p-2 w-full justify-center border border-red-600'
-								}
-							>
-								<Ban size={12} />
-								{error.response ? error?.response.data : 'Сервер не отвечает'}
-							</span>
-						)}
-					</>
 				</div>
 			</form>
 		</div>
