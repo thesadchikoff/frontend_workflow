@@ -1,17 +1,23 @@
-.balance_info {
-	@apply flex items-center gap-2;
-	.balance_count {
-		font-size: 18px;
-		font-weight: 600;
-		background: linear-gradient(
-			263deg,
-			#4e29d7 0.76%,
-			#a42161 45.59%,
-			#c87f37 101.51%
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+.wrapper {
+	.total_balance {
+		@apply text-lg flex items-center gap-1;
+
+		article {
+			font-size: 18px;
+			font-weight: bold;
+			background: linear-gradient(
+				263deg,
+				#4e29d7 0.76%,
+				#a42161 45.59%,
+				#c87f37 101.51%
+			);
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	}
+	.shop_wrapper {
+		@apply grid tablet:grid-cols-2 notebook:grid-cols-2 desktop:grid-cols-3 gap-10;
 	}
 }
 

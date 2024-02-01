@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import authService from '../../services/auth/auth.service.ts'
 import userService from '../../services/user/user.service.ts'
 import { AuthState } from '../../types/auth.types.ts'
-import { login, registerHandler } from './auth.action.ts'
+import { getProfile, login, registerHandler } from './auth.action.ts'
 
 export const initialState: AuthState = {
 	isLoading: false,
@@ -49,6 +49,20 @@ const authSlice = createSlice({
 				state.error = null
 			})
 			.addCase(registerHandler.rejected, (state, { payload }) => {
+				state.isLoading = false
+				state.error = payload
+				state.user = null
+			})
+			.addCase(getProfile.pending, state => {
+				state.isLoading = true
+			})
+			.addCase(getProfile.fulfilled, (state, action) => {
+				state.isLoading = false
+				console.log('From action -> ', action)
+				state.user = action.payload
+				state.error = null
+			})
+			.addCase(getProfile.rejected, (state, { payload }) => {
 				state.isLoading = false
 				state.error = payload
 				state.user = null

@@ -15,7 +15,7 @@ export const login = createAsyncThunk(
 		} catch (error: any) {
 			console.log(error)
 			toaster.danger(
-				error?.response ? error?.response?.data?.message : 'Сервер не отвечает'
+				error?.response ? error?.response?.data : 'Сервер не отвечает'
 			)
 			console.log("It's error -> ", error)
 			return thunkAPI.rejectWithValue(error)
@@ -34,7 +34,7 @@ export const registerHandler = createAsyncThunk(
 		} catch (error: any) {
 			console.log("It's error -> ", error)
 			toaster.danger(
-				error?.response ? error?.response?.data?.message : 'Сервер не отвечает'
+				error?.response ? error?.response?.data : 'Сервер не отвечает'
 			)
 			return thunkAPI.rejectWithValue(error)
 		}

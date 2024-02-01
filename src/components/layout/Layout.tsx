@@ -6,12 +6,12 @@ import Sidebar from './sidebar'
 
 const Layout = ({ children }: PropsWithChildren) => {
 	return (
-		<div className={'flex flex-col w-full h-full'}>
+		<div className={'flex flex-col w-full h-full overflow-hidden'}>
 			<Header />
 			<main className={'w-full h-full flex-1 flex'}>
 				<Sidebar />
 
-				<section className='flex-1 px-10 py-5'>
+				<section className='flex-1 px-10 py-5 overflow-y-auto'>
 					<Suspense fallback={<Loading />}>{children}</Suspense>
 				</section>
 			</main>

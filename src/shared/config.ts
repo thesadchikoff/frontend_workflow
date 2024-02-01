@@ -1,5 +1,5 @@
 const config = {
-	baseURL: 'https://2bd1-31-23-131-14.ngrok-free.app/',
+	baseURL: 'https://26b0-87-117-55-157.ngrok-free.app/',
 	applicationName: 'WorkFlow',
 }
 
