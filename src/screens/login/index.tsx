@@ -1,9 +1,8 @@
 import { KeyRound, Loader2, UserRound } from 'lucide-react'
 import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-
 import Button from '../../components/button/index.tsx'
+import AppLink from '../../components/ui/app-link/index.tsx'
 import Input from '../../components/ui/input/index.tsx'
 import { useAppDispatch } from '../../hooks/useAppDispatch.ts'
 import { useAppSelector } from '../../hooks/useAppSelector.ts'
@@ -59,9 +58,7 @@ const LoginPage: FC = () => {
 					/>
 					<span className='mobile:text-[10px] tablet:text-xs notebook:text-xs desktop:text-xs text-[#616979] flex items-center gap-1'>
 						У Вас нет аккаунта?{' '}
-						<Link to='/register' className='text-[#FFB46A] underline'>
-							Зарегистрируйтесь!
-						</Link>
+						<AppLink to='/register' title='Зарегистрируйтесь!' />
 					</span>
 				</div>
 			</form>

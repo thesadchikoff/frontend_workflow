@@ -1,13 +1,13 @@
 import { KeyRound, Loader2, Mail } from 'lucide-react'
 import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
 import Button from '../../components/button/index.tsx'
 import Input from '../../components/ui/input/index.tsx'
 import { useAppDispatch } from '../../hooks/useAppDispatch.ts'
 import { useAppSelector } from '../../hooks/useAppSelector.ts'
 import { RegisterInputs } from '../../types/form.types.ts'
 
+import AppLink from '../../components/ui/app-link/index.tsx'
 import { registerHandler } from '../../store/auth/auth.action.ts'
 import styles from './Register.module.scss'
 const RegisterPage: FC = () => {
@@ -67,9 +67,7 @@ const RegisterPage: FC = () => {
 					/>
 					<span className='mobile:text-[10px] tablet:text-xs notebook:text-xs desktop:text-xs text-[#616979] flex items-center gap-1'>
 						У Вас уже есть аккаунт?{' '}
-						<Link to='/login' className='text-[#FFB46A] underline'>
-							Авторизуйтесь!
-						</Link>
+						<AppLink to='/login' title='Авторизуйтесь!' />
 					</span>
 				</div>
 			</form>
