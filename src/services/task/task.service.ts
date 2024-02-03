@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toaster } from "evergreen-ui";
-import { httpInterceptorWithToken } from "../../api/http.interceptor";
 import config from "../../shared/config";
 import { Task } from "../../types/auth.types";
 import { CreateTaskInputs } from "../../types/form.types";
@@ -34,6 +33,18 @@ class TaskService {
       return data;
     } catch (error) {
       toaster.danger("Ошибка создания задачи");
+      return error;
+    }
+  }
+  async completeTask(id: number) {
+    try {
+      const { data } = await axios.get(`${config.baseURL}change-task/${id}`, {
+        headers: {
+          Authorization: `Bearer ${userService.getUserToken()}`,
+        },
+      });
+      return data;
+    } catch (error) {
       return error;
     }
   }
