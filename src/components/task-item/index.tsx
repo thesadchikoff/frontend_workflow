@@ -38,7 +38,7 @@ const TaskItem = ({
           <GetStatus />
         </div>
         <IconSpace onClick={completeButtonAction}>
-          <MoreHorizontal size={16} />
+          <CheckCircle2 size={16} />
         </IconSpace>
       </div>
       <div className="task-body">

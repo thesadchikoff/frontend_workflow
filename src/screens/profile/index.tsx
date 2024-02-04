@@ -21,24 +21,62 @@ const Profile = () => {
     },
   });
   const { roleName, bgColor, borderColor, textColor } = getRoleName(user?.role);
-  const { data, isSuccess } = useQuery<MyShopItem[]>({
-    queryKey: ["my-items"],
-    queryFn: shopService.getMyItems,
-    refetchOnWindowFocus: true,
-    refetchOnReconnect: true,
-  });
 
+  const ShopItemsBlock = () => {
+    const { data, isSuccess, isLoading, isError, error } = useQuery<
+      MyShopItem[],
+      ServerError
+    >({
+      queryKey: ["my-items"],
+      queryFn: shopService.getMyItems,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+    });
+    console.log(isError, error);
+    if (isLoading) {
+      return (
+        <div>
+          <span>Загрузка привилегий...</span>
+        </div>
+      );
+    }
+    if (isSuccess && data && data.length > 0) {
+      return (
+        <div className="grid grid-cols-2 gap-10 pb-10">
+          {data.map((item) => {
+            return <MyShopProduct item={item} action={() => mutate(item)} />;
+          })}
+        </div>
+      );
+    }
+    if (isError) {
+      return (
+        <div>
+          <span>Ошибка получения данных ({error.response.data})</span>
+        </div>
+      );
+    }
+    if (!data) {
+      return (
+        <div className={styles.not_found_block}>
+          <h1 className="flex items-center gap-2 opacity-30">
+            <ShoppingBasket />У Вас нет приобретенных привилегий
+          </h1>
+        </div>
+      );
+    }
+  };
   return (
     <>
       {user && (
-        <div className="w-full h-full flex flex-col gap-10 relative">
+        <div className="w-full h-full flex flex-col gap-10">
           <div className="flex flex-col h-full">
             <SectionHeader title="Ваш профиль" />
             <div className="p-5 bg-[#0F1623] rounded flex items-center justify-between">
               <div className="flex items-center gap-5">
                 <h1 className="text-2xl font-bold">{user!.username}</h1>
                 <span
-                  className={`rounded text-[10px] bg-opacity-[15%] px-4 py-1 ${bgColor} ${textColor} border ${borderColor} `}
+                  className={`rounded text-[10px] bg-opacity-[15%] px-4 py-1 ${bgColor} ${textColor} border ${borderColor}`}
                 >
                   {roleName}
                 </span>
@@ -51,27 +89,8 @@ const Profile = () => {
               </div>
             </div>
             <SectionHeader title="Мои покупки" />
-            {!data ? (
-              <div className={styles.not_found_block}>
-                <h1 className="flex items-center gap-2 opacity-30">
-                  <ShoppingBasket />У Вас нет приобретенных привилегий
-                </h1>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-10">
-                {isSuccess &&
-                  data &&
-                  data.map((item) => {
-                    return (
-                      <MyShopProduct item={item} action={() => mutate(item)} />
-                    );
-                  })}
-              </div>
-            )}
+            <ShopItemsBlock />
           </div>
-          {/* <div className="w-full absolute bottom-0 bg-sky-600 left-0">
-            <h1>Вы администратор</h1>
-          </div> */}
         </div>
       )}
     </>

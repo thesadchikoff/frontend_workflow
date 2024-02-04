@@ -40,7 +40,7 @@ const ShopPage = () => {
         <div className={styles.shop_footer}>
           <div className={styles.shop_price}>
             <img src={Coin} />
-            <span>{item.price}</span>
+            <span>{formatNumber(item.price)}</span>
           </div>
           <Button onClick={() => mutate(item)} title="Приобрести" />
         </div>

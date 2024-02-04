@@ -3,6 +3,10 @@ import { toaster } from "evergreen-ui";
 import config from "../../shared/config";
 import { MyShopItem, ShopItem } from "../../types/shop.type";
 import userService from "../user/user.service";
+import {
+  createAxiosClient,
+  httpInterceptorWithToken,
+} from "../../api/http.interceptor";
 
 class ShopService {
   async getShopItems() {
@@ -27,7 +31,7 @@ class ShopService {
       toaster.success("Покупка совершена успешно");
       return data;
     } catch (error) {
-      toaster.success("Произошла ошибка при покупке");
+      toaster.danger(error.response.data);
       return error;
     }
   }
@@ -50,16 +54,16 @@ class ShopService {
   }
 
   async getMyItems() {
-    try {
-      const { data } = await axios.get(`${config.baseURL}my-items`, {
-        headers: {
-          Authorization: `Bearer ${userService.getUserToken()}`,
-        },
-      });
-      return data;
-    } catch (error) {
-      return error;
-    }
+    // const { data } = await axios.get(`${config.baseURL}my-items`, {
+    //   headers: {
+    //     Authorization: `Bearer ${userService.getUserToken()}`,
+    //   },
+    // });
+    const client = createAxiosClient();
+    const { data } = await client.get("my-items", {
+      authorization: true,
+    });
+    return data;
   }
 }
 

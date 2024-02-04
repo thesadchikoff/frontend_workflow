@@ -1,5 +1,5 @@
 import Cookie from "js-cookie";
-import { httpInterceptorWithToken } from "../../api/http.interceptor";
+import { createAxiosClient } from "../../api/http.interceptor";
 import { User } from "../../types/auth.types";
 
 class UserService {
@@ -9,7 +9,10 @@ class UserService {
   }
 
   async getProfile() {
-    const { data } = await httpInterceptorWithToken.get("get-me");
+    const client = createAxiosClient();
+    const { data } = await client.get("get-me", {
+      authorization: true,
+    });
     return data.user;
   }
 
