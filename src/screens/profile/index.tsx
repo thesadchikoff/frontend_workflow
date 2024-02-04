@@ -9,15 +9,18 @@ import shopService from "../../services/shop/shop.service";
 import { MyShopItem } from "../../types/shop.type";
 import styles from "./Profile.module.scss";
 import { ShoppingBasket } from "lucide-react";
+import { constants } from "../../constants";
 
 const Profile = () => {
   const user = useAppSelector((state) => state.user);
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
-    mutationKey: ["use-item"],
+    mutationKey: [constants.queryKeys.USE_ITEMS],
     mutationFn: shopService.useProductItem,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["my-items"] });
+      queryClient.invalidateQueries({
+        queryKey: [constants.queryKeys.MY_ITEMS],
+      });
     },
   });
   const { roleName, bgColor, borderColor, textColor } = getRoleName(user?.role);
@@ -27,7 +30,7 @@ const Profile = () => {
       MyShopItem[],
       ServerError
     >({
-      queryKey: ["my-items"],
+      queryKey: [constants.queryKeys.MY_ITEMS],
       queryFn: shopService.getMyItems,
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,

@@ -12,6 +12,7 @@ import { useMutationTask } from "../../hooks/useMutationTask";
 import taskService from "../../services/task/task.service";
 import { Task } from "../../types/auth.types";
 import { CreateTaskInputs } from "../../types/form.types";
+import { constants } from "../../constants";
 
 const TasksPage = () => {
   const { createMutate, isPendingCreate, isSuccessCreate } = useMutationTask();
@@ -31,22 +32,26 @@ const TasksPage = () => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const queryClient = useQueryClient();
   const { data, isError, isLoading } = useQuery<Task[]>({
-    queryKey: ["tasks"],
+    queryKey: [constants.queryKeys.GET_TASKS],
     queryFn: taskService.getTasks,
     refetchOnWindowFocus: "always",
   });
   const { mutate } = useMutation({
-    mutationKey: ["tasks-delete"],
+    mutationKey: [constants.queryKeys.DELETE_TASKS],
     mutationFn: (id: number) => taskService.deleteTask(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      queryClient.invalidateQueries({
+        queryKey: [constants.queryKeys.GET_TASKS],
+      });
     },
   });
   const { mutate: changeMutate } = useMutation({
-    mutationKey: ["tasks-change"],
+    mutationKey: [constants.queryKeys.CHANGE_TASKS],
     mutationFn: (id: number) => taskService.completeTask(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      queryClient.invalidateQueries({
+        queryKey: [constants.queryKeys.GET_TASKS],
+      });
     },
   });
 

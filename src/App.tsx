@@ -15,11 +15,12 @@ import userService from "./services/user/user.service.ts";
 import { logout, updateProfile } from "./store/auth/auth.slice.ts";
 import InvitesPage from "./screens/invites/index.tsx";
 import NotFound from "./screens/not-found/index.tsx";
+import { constants } from "./constants/index.ts";
 
 function App() {
   const dispatch = useAppDispatch();
   const { data, isError } = useQuery({
-    queryKey: ["getMe"],
+    queryKey: [constants.queryKeys.GET_PROFILE],
     queryFn: userService.getProfile,
     refetchOnWindowFocus: "always",
   });

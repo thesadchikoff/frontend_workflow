@@ -2,6 +2,7 @@ import Button from "../../components/button";
 import { SetStateAction, useEffect, useState } from "react";
 import subdivisionService from "../../services/subdivision/subdivision.service";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { constants } from "../../constants";
 
 interface SubdivisionProps {
   subdivision: Subdivision;
@@ -10,24 +11,22 @@ interface SubdivisionProps {
 
 const SubdivisionPage = () => {
   const [isShowButton, setIsShowButton] = useState(true);
-
-  const inviteSubdivision = (subdivision) => {
-    subdivisionService.getInviteToSubdivision(subdivision);
-  };
   async function getSubdivision() {
     setIsShowButton(false);
   }
   const Subdivisions = () => {
     const queryClient = useQueryClient();
     const { data, isLoading } = useQuery<Subdivision[]>({
-      queryKey: ["subdivisions"],
+      queryKey: [constants.queryKeys.SUBDIVISIONS],
       queryFn: subdivisionService.getSubdivisions,
     });
     const { mutate } = useMutation({
-      mutationKey: ["send-invite"],
+      mutationKey: [constants.queryKeys.SEND_INVITES],
       mutationFn: subdivisionService.getInviteToSubdivision,
       onSuccess() {
-        queryClient.invalidateQueries({ queryKey: ["subdivisions"] });
+        queryClient.invalidateQueries({
+          queryKey: [constants.queryKeys.SUBDIVISIONS],
+        });
       },
     });
     if (isLoading) {
