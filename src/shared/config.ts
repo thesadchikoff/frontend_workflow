@@ -1,6 +1,6 @@
 const config = {
-  baseURL: "https://a53d-217-170-123-143.ngrok-free.app/",
-  applicationName: "WorkFlow",
-};
+	baseURL: 'https://aba6-87-244-58-26.ngrok-free.app/',
+	applicationName: 'WorkFlow',
+}
 
-export default config;
+export default config

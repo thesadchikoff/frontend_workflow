@@ -1,16 +1,47 @@
 .button {
-  @apply w-full flex items-center px-5 justify-center py-2  text-[#FFB46A] rounded;
-  .btn-icon {
-    svg {
-      width: 12px;
-      height: 12px;
-    }
-  }
-  &:disabled {
-    @apply opacity-60 cursor-not-allowed;
-  }
+	@apply w-full flex items-center  justify-center  text-[#FFB46A] rounded;
+	.btn-icon {
+		svg {
+			width: 12px;
+			height: 12px;
+		}
+	}
+	&:disabled {
+		@apply opacity-60 cursor-not-allowed;
+	}
 }
 
+// style options
+
 .primary {
-  @apply bg-[#000714] hover:bg-opacity-50;
+	@apply bg-[#000714] hover:bg-opacity-50;
+}
+
+.success {
+	@apply bg-[#379D4E] hover:bg-opacity-50 text-white;
+}
+
+.danger {
+	@apply bg-[#AF1414] hover:bg-opacity-50 text-white;
+}
+
+.ghost {
+	@apply bg-inherit hover:bg-opacity-50;
+}
+
+// size options
+.small_button {
+	@apply px-3 py-2 text-xs;
+}
+
+.middle_button {
+	@apply px-4 py-3 text-xs;
+}
+
+.large_button {
+	@apply px-5 py-2 text-lg;
+}
+
+.xl_button {
+	@apply px-7 py-4 text-xl;
 }

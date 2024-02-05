@@ -10,5 +10,6 @@ export const constants = {
 		SHOP: 'shop',
 		SEND_INVITES: 'send-invites',
 		USE_ITEMS: 'use-items',
+		ACCEPT_INVITE: 'accept-invite',
 	},
 }

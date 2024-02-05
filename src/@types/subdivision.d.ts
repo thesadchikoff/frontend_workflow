@@ -1,24 +1,29 @@
 interface Subdivision {
-  name: string;
-  subdivision_id: number;
-  owner: number;
-  isinvited: boolean;
+	name: string
+	subdivision_id: number
+	owner: number
+	isinvited: boolean
 }
 interface ErrorServerResponse {
-  data: string;
-  status: number;
-  statusText: string;
+	data: string
+	status: number
+	statusText: string
 }
 interface ServerError extends Error {
-  response: ErrorServerResponse;
+	response: ErrorServerResponse
 }
 interface Invite {
-  user: {
-    user_id: number;
-    username: string;
-  };
-  subdivision: {
-    subdivision_id: number;
-    subdivision_name: string;
-  };
+	user: {
+		user_id: number
+		username: string
+	}
+	subdivision: {
+		subdivision_id: number
+		subdivision_name: string
+	}
+}
+
+interface AcceptUser {
+	user_id: number
+	subdivision_id: number
 }
