@@ -11,5 +11,7 @@ export const constants = {
 		SEND_INVITES: 'send-invites',
 		USE_ITEMS: 'use-items',
 		ACCEPT_INVITE: 'accept-invite',
+		MY_SUBDIVISION: 'my-subdivision',
+		CREATE_TASK: 'tasks-create',
 	},
 }

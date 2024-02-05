@@ -8,7 +8,6 @@ import { formatNumber } from '../../helpers/format-balance.helper'
 import { getRoleName } from '../../helpers/get-role-name.helper'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import shopService from '../../services/shop/shop.service'
-import { MyShopItem } from '../../types/shop.type'
 import styles from './Profile.module.scss'
 
 const Profile = () => {

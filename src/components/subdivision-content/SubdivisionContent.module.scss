@@ -1,0 +1,15 @@
+.username {
+	@apply text-lg font-bold;
+}
+
+.admin {
+	background: linear-gradient(
+		263deg,
+		#4e29d7 0.76%,
+		#a42161 45.59%,
+		#c87f37 101.51%
+	);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

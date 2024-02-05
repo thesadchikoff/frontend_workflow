@@ -1,7 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import Button from '../../components/button'
+import SubdivisionContent from '../../components/subdivision-content'
 import { constants } from '../../constants'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import subdivisionService from '../../services/subdivision/subdivision.service'
 
 interface SubdivisionProps {
@@ -10,6 +12,7 @@ interface SubdivisionProps {
 }
 
 const SubdivisionPage = () => {
+	const user = useAppSelector(state => state.user)
 	const [isShowButton, setIsShowButton] = useState(true)
 	async function getSubdivision() {
 		setIsShowButton(false)
@@ -20,6 +23,7 @@ const SubdivisionPage = () => {
 			queryKey: [constants.queryKeys.SUBDIVISIONS],
 			queryFn: subdivisionService.getSubdivisions,
 		})
+
 		const { mutate } = useMutation({
 			mutationKey: [constants.queryKeys.SEND_INVITES],
 			mutationFn: subdivisionService.getInviteToSubdivision,
@@ -68,6 +72,9 @@ const SubdivisionPage = () => {
 				/>
 			</div>
 		)
+	}
+	if (user.subdivision) {
+		return <SubdivisionContent />
 	}
 	return (
 		<div className='flex h-full flex-col items-center justify-center'>

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { toaster } from 'evergreen-ui'
+import { Invite, Subdivision } from '../../@types/subdivision'
 import { createAxiosClient } from '../../api/http.interceptor'
 import config from '../../shared/config'
 import userService from '../user/user.service'
@@ -48,6 +49,12 @@ class SubdivisionService {
 			user_id: acceptUserData.user.user_id,
 			subdivision_id: acceptUserData.subdivision.subdivision_id,
 		})
+		return data
+	}
+
+	async getMySubdivision() {
+		const client = createAxiosClient()
+		const { data } = await client.get('my-subdivision')
 		return data
 	}
 

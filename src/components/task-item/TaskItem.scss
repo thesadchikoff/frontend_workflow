@@ -1,5 +1,5 @@
 .task-item {
-	@apply p-5 bg-[#0F1623] rounded flex   flex-col relative;
+	@apply p-5 bg-[#0F1623] rounded-xl flex   flex-col relative;
 	transition: all 0.3s;
 	&:hover {
 		transform: translateY(-10px);

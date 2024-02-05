@@ -1,39 +1,44 @@
 import { AxiosError } from 'axios'
 
-export type User = {
+type User = {
 	id: string
 	username: string
 	tasks: Task[]
 	balance: number
 	role: string
+	subdivision: {
+		id: number
+		name: string
+	}
 }
 
-export type Task = {
+type Task = {
 	id: number
 	title: string
 	description: string
 	created_at: string
-	iscomplete: boolean
+	iscomplete?: boolean
+	username?: string
 }
-export type AuthState = {
+type AuthState = {
 	isLoading: boolean
 	user: User | null
 	error: string | unknown
 }
 
-export interface LoginResponse {
+interface LoginResponse {
 	token: string
 	user: User
 }
 
-export interface LoginData {
+interface LoginData {
 	username: string
 	password: string
 }
 
-export interface RegisterData {
+interface RegisterData {
 	username: string
 	password: string
 }
 
-export interface Error extends AxiosError {}
+interface Error extends AxiosError {}
